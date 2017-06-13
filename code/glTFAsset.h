@@ -58,10 +58,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <algorithm>
 #include <stdexcept>
 
-#define RAPIDJSON_HAS_STDSTRING 1
-#include <rapidjson/rapidjson.h>
-#include <rapidjson/document.h>
-#include <rapidjson/error/en.h>
+#include "json/src/json.hpp"
 
 #ifdef ASSIMP_API
 #   include <memory>
@@ -89,8 +86,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #   endif
 #endif
 
-namespace glTF
-{
+namespace glTF {
+    using json = nlohmann::json;
+
 #ifdef ASSIMP_API
     using Assimp::IOStream;
     using Assimp::IOSystem;
@@ -121,9 +119,6 @@ namespace glTF
         }
     };
 #endif
-
-    using rapidjson::Value;
-    using rapidjson::Document;
 
     class Asset;
     class AssetWriter;
@@ -344,17 +339,26 @@ namespace glTF
     //! A reference to one top-level object, which is valid
     //! until the Asset instance is destroyed
     template<class T>
-    class Ref
-    {
+    class Ref {
         std::vector<T*>* vector;
         unsigned int index;
 
     public:
-        Ref() : vector(0), index(0) {}
-        Ref(std::vector<T*>& vec, unsigned int idx) : vector(&vec), index(idx) {}
+        Ref()
+        : vector(0)
+        , index(0) {
+            // empty
+        }
 
-        inline unsigned int GetIndex() const
-            { return index; }
+        Ref(std::vector<T*>& vec, unsigned int idx)
+        : vector(&vec), index(idx) {
+            // empty
+        }
+
+        inline
+        unsigned int GetIndex() const {
+            return index;
+        }
 
         operator bool() const
             { return vector != 0; }
@@ -458,8 +462,10 @@ namespace glTF
             return Indexer(*this);
         }
 
-        Accessor() {}
-        void Read(Value& obj, Asset& r);
+        Accessor() {
+            // empty
+        }
+        void Read(json& obj, Asset& r);
     };
 
     //! A buffer points to binary geometry, animation, or skins.
@@ -546,7 +552,7 @@ namespace glTF
 		Buffer();
 		~Buffer();
 
-		void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
 
         bool LoadFromStream(IOStream& stream, size_t length = 0, size_t baseOffset = 0);
 
@@ -600,7 +606,7 @@ namespace glTF
 
         BufferViewTarget target; //! The target that the WebGL buffer should be bound to.
 
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
     struct Camera : public Object
@@ -631,7 +637,7 @@ namespace glTF
         };
 
         Camera() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
 
@@ -653,7 +659,7 @@ namespace glTF
     public:
 
         Image();
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
 
         inline bool HasData() const
             { return mDataLength > 0; }
@@ -705,7 +711,7 @@ namespace glTF
         Technique technique;
 
         Material() { SetDefaults(); }
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
         void SetDefaults();
     };
 
@@ -798,7 +804,7 @@ namespace glTF
 		/// Get mesh data from JSON-object and place them to root asset.
 		/// \param [in] pJSON_Object - reference to pJSON-object from which data are read.
 		/// \param [out] pAsset_Root - reference to root assed where data will be stored.
-		void Read(Value& pJSON_Object, Asset& pAsset_Root);
+        void Read(json& pJSON_Object, Asset& pAsset_Root);
 
 		#ifdef ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC
 			/// \fn void Decode_O3DGC(const SCompression_Open3DGC& pCompression_Open3DGC, Asset& pAsset_Root)
@@ -829,40 +835,45 @@ namespace glTF
         Ref<Node> parent;                         //!< This is not part of the glTF specification. Used as a helper.
 
         Node() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
     struct Program : public Object
     {
         Program() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
 
-    struct Sampler : public Object
-    {
+    struct Sampler : public Object {
         SamplerMagFilter magFilter; //!< The texture magnification filter. (required)
         SamplerMinFilter minFilter; //!< The texture minification filter. (required)
         SamplerWrap wrapS;          //!< The texture wrapping in the S direction. (required)
         SamplerWrap wrapT;          //!< The texture wrapping in the T direction. (required)
 
-        Sampler() {}
-        void Read(Value& obj, Asset& r);
+        Sampler()
+        : Object() {
+            // empty
+        }
+        void Read(json& obj, Asset& r);
         void SetDefaults();
     };
 
-    struct Scene : public Object
-    {
+    struct Scene : public Object {
         std::vector< Ref<Node> > nodes;
 
-        Scene() {}
-        void Read(Value& obj, Asset& r);
+        Scene()
+        : Object() {
+
+        }
+
+        void Read(json& obj, Asset& r);
     };
 
     struct Shader : public Object
     {
         Shader() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
     struct Skin : public Object
@@ -873,7 +884,7 @@ namespace glTF
         std::string name;                     //!< The user-defined name of this object.
 
         Skin() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
     struct Technique : public Object
@@ -894,7 +905,7 @@ namespace glTF
         };
 
         Technique() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
     //! A texture and its sampler.
@@ -910,7 +921,7 @@ namespace glTF
         //TextureType type; //!< Texel datatype. (default: TextureType_UNSIGNED_BYTE)
 
         Texture() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
 
@@ -937,7 +948,7 @@ namespace glTF
         float falloffExponent;
 
         Light() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
 
         void SetDefaults();
     };
@@ -976,7 +987,7 @@ namespace glTF
         std::vector<AnimSampler> Samplers;         //!< The parameterized inputs representing the key-frame data.
 
         Animation() {}
-        void Read(Value& obj, Asset& r);
+        void Read(json& obj, Asset& r);
     };
 
 
@@ -986,7 +997,7 @@ namespace glTF
     public:
         virtual ~LazyDictBase() {}
 
-        virtual void AttachToDocument(Document& doc) = 0;
+        virtual void AttachToDocument(json& doc) = 0;
         virtual void DetachFromDocument() = 0;
 
         virtual void WriteObjects(AssetWriter& writer) = 0;
@@ -1015,10 +1026,10 @@ namespace glTF
         Dict             mObjsById;  //! The read objects accessible by id
         const char*      mDictId;    //! ID of the dictionary object
         const char*      mExtId;     //! ID of the extension defining the dictionary
-        Value*           mDict;      //! JSON dictionary object
+        json*            mDict;      //! JSON dictionary object
         Asset&           mAsset;     //! The asset instance
 
-        void AttachToDocument(Document& doc);
+        void AttachToDocument(json& doc);
         void DetachFromDocument();
 
         void WriteObjects(AssetWriter& writer)
@@ -1060,7 +1071,7 @@ namespace glTF
 
         int version; //!< The glTF format version (should be 1)
 
-        void Read(Document& doc);
+        void Read(json& doc);
 
         AssetMetadata()
             : premultipliedAlpha(false)
@@ -1139,29 +1150,8 @@ namespace glTF
         Ref<Scene> scene;
 
     public:
-        Asset(IOSystem* io = 0)
-            : mIOSystem(io)
-            , asset()
-            , accessors     (*this, "accessors")
-            , animations    (*this, "animations")
-            , buffers       (*this, "buffers")
-            , bufferViews   (*this, "bufferViews")
-            , cameras       (*this, "cameras")
-            , images        (*this, "images")
-            , materials     (*this, "materials")
-            , meshes        (*this, "meshes")
-            , nodes         (*this, "nodes")
-            //, programs    (*this, "programs")
-            , samplers      (*this, "samplers")
-            , scenes        (*this, "scenes")
-            //, shaders     (*this, "shaders")
-            , skins       (*this, "skins")
-            //, techniques  (*this, "techniques")
-            , textures      (*this, "textures")
-            , lights        (*this, "lights", "KHR_materials_common")
-        {
-            memset(&extensionsUsed, 0, sizeof(extensionsUsed));
-        }
+        /// The default class constructor.
+        Asset( IOSystem* io = 0 );
 
         //! Main function
         void Load(const std::string& file, bool isBinary = false);
@@ -1172,17 +1162,43 @@ namespace glTF
         //! Search for an available name, starting from the given strings
         std::string FindUniqueID(const std::string& str, const char* suffix);
 
-        Ref<Buffer> GetBodyBuffer()
-            { return mBodyBuffer; }
+        /// The body buffer getter.
+        Ref<Buffer> GetBodyBuffer();
 
     private:
         void ReadBinaryHeader(IOStream& stream);
-
-        void ReadExtensionsUsed(Document& doc);
-
-
+        void ReadExtensionsUsed(json& doc);
         IOStream* OpenFile(std::string path, const char* mode, bool absolute = false);
     };
+
+    inline
+    Asset::Asset(IOSystem* io)
+    : mIOSystem(io)
+    , asset()
+    , accessors     (*this, "accessors")
+    , animations    (*this, "animations")
+    , buffers       (*this, "buffers")
+    , bufferViews   (*this, "bufferViews")
+    , cameras       (*this, "cameras")
+    , images        (*this, "images")
+    , materials     (*this, "materials")
+    , meshes        (*this, "meshes")
+    , nodes         (*this, "nodes")
+    //, programs    (*this, "programs")
+    , samplers      (*this, "samplers")
+    , scenes        (*this, "scenes")
+    //, shaders     (*this, "shaders")
+    , skins       (*this, "skins")
+    //, techniques  (*this, "techniques")
+    , textures      (*this, "textures")
+    , lights        (*this, "lights", "KHR_materials_common") {
+        memset(&extensionsUsed, 0, sizeof(extensionsUsed));
+    }
+
+    inline
+    Ref<Buffer> Asset::GetBodyBuffer() {
+        return mBodyBuffer;
+    }
 
 }
 

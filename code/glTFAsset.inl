@@ -54,22 +54,26 @@ using namespace Assimp;
 namespace glTF {
 
 namespace {
-
     //
     // JSON Value reading helpers
     //
 
     template<class T>
-    struct ReadHelper { static bool Read(Value& val, T& out) {
-        return val.IsInt() ? out = static_cast<T>(val.GetInt()), true : false;
-    }};
+    struct ReadHelper {
+        static bool Read( json& val, T& out) {
+            return val.IsInt() ? out = static_cast<T>( val.get<int>() ), true : false;
+        }
+    };
 
-    template<> struct ReadHelper<bool> { static bool Read(Value& val, bool& out) {
-        return val.IsBool() ? out = val.GetBool(), true : false;
-    }};
+    template<>
+    struct ReadHelper<bool> {
+        static bool Read(json& val, bool& out) {
+            return val.IsBool() ? out = val.get<bool>(), true : false;
+        }
+    };
 
-    template<> struct ReadHelper<float> { static bool Read(Value& val, float& out) {
-        return val.IsNumber() ? out = static_cast<float>(val.GetDouble()), true : false;
+    template<> struct ReadHelper<float> { static bool Read(json& val, float& out) {
+        return val.IsNumber() ? out = static_cast<float>(val.get<double>()), true : false;
     }};
 
     template<unsigned int N> struct ReadHelper<float[N]> { static bool Read(Value& val, float (&out)[N]) {
@@ -100,9 +104,9 @@ namespace {
     }
 
     template<class T>
-    inline static bool ReadMember(Value& obj, const char* id, T& out)
+    inline static bool ReadMember(json& obj, const char* id, T& out)
     {
-        Value::MemberIterator it = obj.FindMember(id);
+        Value::MemberIterator it = obj.at(id);
         if (it != obj.MemberEnd()) {
             return ReadHelper<T>::Read(it->value, out);
         }
