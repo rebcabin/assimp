@@ -61,44 +61,59 @@ namespace {
     template<class T>
     struct ReadHelper {
         static bool Read( json& val, T& out) {
-            return val.IsInt() ? out = static_cast<T>( val.get<int>() ), true : false;
+            return val.is_number_integer() ? out = static_cast<T>( val.get<int>() ), true : false;
         }
     };
 
     template<>
     struct ReadHelper<bool> {
         static bool Read(json& val, bool& out) {
-            return val.IsBool() ? out = val.get<bool>(), true : false;
+            return val.is_boolean() ? out = val.get<bool>(), true : false;
         }
     };
 
     template<> struct ReadHelper<float> { static bool Read(json& val, float& out) {
-        return val.IsNumber() ? out = static_cast<float>(val.get<double>()), true : false;
+        return val.is_number() ? out = static_cast<float>(val.get<double>()), true : false;
     }};
 
-    template<unsigned int N> struct ReadHelper<float[N]> { static bool Read(Value& val, float (&out)[N]) {
-        if (!val.IsArray() || val.Size() != N) return false;
-        for (unsigned int i = 0; i < N; ++i) {
-            if (val[i].IsNumber())
-                out[i] = static_cast<float>(val[i].GetDouble());
+    template<unsigned int N>
+    struct ReadHelper<float[N]> {
+        static bool Read(json& val, float (&out)[N]) {
+            if (!val.is_array() || val.size() != N) {
+                return false;
+            }
+            for (unsigned int i = 0; i < N; ++i) {
+                if (val[i].is_number()) {
+                    out[i] = static_cast<float>(val[i].get<double>());
+                }
+            }
+            return true;
         }
-        return true;
-    }};
+    };
 
-    template<> struct ReadHelper<const char*> { static bool Read(Value& val, const char*& out) {
-        return val.IsString() ? (out = val.GetString(), true) : false;
-    }};
+    template<>
+    struct ReadHelper<const char*> {
+        static bool Read(json& val, const char*& out) {
+            return val.is_string() ? (out = val.get<std::string>().c_str(), true) : false;
+        }
+    };
 
-    template<> struct ReadHelper<std::string> { static bool Read(Value& val, std::string& out) {
-        return val.IsString() ? (out = std::string(val.GetString(), val.GetStringLength()), true) : false;
-    }};
-
-    template<class T> struct ReadHelper< Nullable<T> > { static bool Read(Value& val, Nullable<T>& out) {
-        return out.isPresent = ReadHelper<T>::Read(val, out.value);
-    }};
+    template<>
+    struct ReadHelper<std::string> {
+        static bool Read(json& val, std::string& out) {
+            return val.is_string() ? (out = std::string(val.get<std::string>().c_str(), val.get<std::string>().size()), true) : false;
+        }
+    };
 
     template<class T>
-    inline static bool ReadValue(Value& val, T& out)
+    struct ReadHelper< Nullable<T> > {
+        static bool Read(json& val, Nullable<T>& out) {
+            return out.isPresent = ReadHelper<T>::Read(val, out.value);
+        }
+    };
+
+    template<class T>
+    inline static bool ReadValue(json& val, T& out)
     {
         return ReadHelper<T>::Read(val, out);
     }
@@ -106,39 +121,53 @@ namespace {
     template<class T>
     inline static bool ReadMember(json& obj, const char* id, T& out)
     {
-        Value::MemberIterator it = obj.at(id);
-        if (it != obj.MemberEnd()) {
-            return ReadHelper<T>::Read(it->value, out);
+        try {
+            out = obj.at( id );
+        } catch( ... ) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     template<class T>
-    inline static T MemberOrDefault(Value& obj, const char* id, T defaultValue)
-    {
+    inline
+    static T MemberOrDefault(json& obj, const char* id, T defaultValue) {
         T out;
         return ReadMember(obj, id, out) ? out : defaultValue;
     }
 
-    inline Value* FindMember(Value& val, const char* id)
-    {
-        Value::MemberIterator it = val.FindMember(id);
-        return (it != val.MemberEnd()) ? &it->value : 0;
+    inline
+    json* FindMember(json& val, const char* id) {
+        json res;
+        try {
+            res = val.at( id );
+        } catch( ... ) {
+            return nullptr;
+        }
+        return &res;
     }
 
-    inline Value* FindString(Value& val, const char* id)
-    {
-        Value::MemberIterator it = val.FindMember(id);
-        return (it != val.MemberEnd() && it->value.IsString()) ? &it->value : 0;
+    inline
+    json* FindString(json& val, const char* id) {
+        json res;
+        try {
+            res = val.at( id );
+            return ( res.is_string() ? return &res : return nullptr );
+        } catch( ... ) {
+            return nullptr;
+        }
+        return &res;
+/*        Value::MemberIterator it = val.FindMember(id);
+        return (it != val.MemberEnd() && it->value.IsString()) ? &it->value : 0;*/
     }
 
-    inline Value* FindArray(Value& val, const char* id)
+    inline json* FindArray(json& val, const char* id)
     {
         Value::MemberIterator it = val.FindMember(id);
         return (it != val.MemberEnd() && it->value.IsArray()) ? &it->value : 0;
     }
 
-    inline Value* FindObject(Value& val, const char* id)
+    inline json* FindObject(json& val, const char* id)
     {
         Value::MemberIterator it = val.FindMember(id);
         return (it != val.MemberEnd() && it->value.IsObject()) ? &it->value : 0;
