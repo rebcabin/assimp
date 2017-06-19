@@ -783,7 +783,7 @@ inline void Material::Read( json& material, Asset& r)
         if (r.extensionsUsed.KHR_materials_common) {
             if ( json* ext = FindObject(*extensions, "KHR_materials_common")) {
                 if ( json* tnq = FindString(*ext, "technique")) {
-                    const char* t = tnq->GetString();
+                    const char* t = tnq->get<std::string>().c_str();
                     if      (strcmp(t, "BLINN") == 0)    technique = Technique_BLINN;
                     else if (strcmp(t, "PHONG") == 0)    technique = Technique_PHONG;
                     else if (strcmp(t, "LAMBERT") == 0)  technique = Technique_LAMBERT;
@@ -861,13 +861,13 @@ namespace {
     }
 }
 
-inline void Mesh::Read(Value& pJSON_Object, Asset& pAsset_Root)
+inline void Mesh::Read( json& pJSON_Object, Asset& pAsset_Root)
 {
 	/****************** Mesh primitives ******************/
-	if (Value* primitives = FindArray(pJSON_Object, "primitives")) {
+	if ( json* primitives = FindArray(pJSON_Object, "primitives")) {
         this->primitives.resize(primitives->Size());
         for (unsigned int i = 0; i < primitives->Size(); ++i) {
-            Value& primitive = (*primitives)[i];
+            json& primitive = (*primitives)[i];
 
             Primitive& prim = this->primitives[i];
             prim.mode = MemberOrDefault(primitive, "mode", PrimitiveMode_TRIANGLES);
@@ -889,18 +889,18 @@ inline void Mesh::Read(Value& pJSON_Object, Asset& pAsset_Root)
                 }
             }
 
-            if (Value* indices = FindString(primitive, "indices")) {
+            if ( json* indices = FindString(primitive, "indices")) {
 				prim.indices = pAsset_Root.accessors.Get(indices->GetString());
             }
 
-            if (Value* material = FindString(primitive, "material")) {
+            if ( json* material = FindString(primitive, "material")) {
 				prim.material = pAsset_Root.materials.Get(material->GetString());
             }
         }
     }
 
 	/****************** Mesh extensions ******************/
-	Value* json_extensions = FindObject(pJSON_Object, "extensions");
+    json* json_extensions = FindObject(pJSON_Object, "extensions");
 
 	if(json_extensions == nullptr) goto mr_skip_extensions;
 
@@ -912,7 +912,7 @@ inline void Mesh::Read(Value& pJSON_Object, Asset& pAsset_Root)
 			// Search for compressed data.
 			// Compressed data contain description of part of "buffer" which is encoded. This part must be decoded and
 			// new data will replace old encoded part by request. In fact \"compressedData\" is kind of "accessor" structure.
-			Value* comp_data = FindObject(it_memb->value, "compressedData");
+            json* comp_data = FindObject(it_memb->value, "compressedData");
 
 			if(comp_data == nullptr) throw DeadlyImportError("GLTF: \"Open3DGC-compression\" must has \"compressedData\".");
 
