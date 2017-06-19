@@ -152,7 +152,7 @@ namespace {
         json res;
         try {
             res = val.at( id );
-            return ( res.is_string() ? return &res : return nullptr );
+            return ( res.is_string() ? &res : nullptr );
         } catch( ... ) {
             return nullptr;
         }
@@ -161,16 +161,36 @@ namespace {
         return (it != val.MemberEnd() && it->value.IsString()) ? &it->value : 0;*/
     }
 
-    inline json* FindArray(json& val, const char* id)
-    {
-        Value::MemberIterator it = val.FindMember(id);
-        return (it != val.MemberEnd() && it->value.IsArray()) ? &it->value : 0;
+    inline 
+    json* FindArray(json& val, const char* id) {
+        json res;
+        try {
+            res = val.at( id );
+            return ( res.is_array() ? &res : nullptr );
+        }
+        catch ( ... ) {
+            return nullptr;
+        }
+        return &res;
+
+        /*Value::MemberIterator it = val.FindMember(id);
+        return (it != val.MemberEnd() && it->value.IsArray()) ? &it->value : 0;*/
     }
 
     inline json* FindObject(json& val, const char* id)
     {
-        Value::MemberIterator it = val.FindMember(id);
-        return (it != val.MemberEnd() && it->value.IsObject()) ? &it->value : 0;
+        json res;
+        try {
+            res = val.at( id );
+            return ( res.is_object()?&res:nullptr );
+        }
+        catch ( ... ) {
+            return nullptr;
+        }
+        return &res;
+
+        /*Value::MemberIterator it = val.FindMember(id);
+        return (it != val.MemberEnd() && it->value.IsObject()) ? &it->value : 0;*/
     }
 }
 
@@ -195,9 +215,9 @@ inline LazyDict<T>::~LazyDict()
 
 
 template<class T>
-inline void LazyDict<T>::AttachToDocument(Document& doc)
-{
-    Value* container = 0;
+inline 
+void LazyDict<T>::AttachToDocument( json& doc) {
+    json *container = nullptr;
 
     if (mExtId) {
         if (Value* exts = FindObject(doc, "extensions")) {
@@ -303,23 +323,25 @@ inline const char* Buffer::TranslateId(Asset& r, const char* id)
     return id;
 }
 
-inline void Buffer::Read(Value& obj, Asset& r)
+inline void Buffer::Read(json& obj, Asset& r)
 {
     size_t statedLength = MemberOrDefault<size_t>(obj, "byteLength", 0);
     byteLength = statedLength;
 
-    Value* it = FindString(obj, "uri");
-    if (!it) {
+//    Value* it = FindString(obj, "uri");
+    if ( obj.find( "uri" ) == obj.end() ) {
         if (statedLength > 0) {
             throw DeadlyImportError("GLTF: buffer with non-zero length missing the \"uri\" attribute");
         }
         return;
     }
 
-    const char* uri = it->GetString();
+    const char* uri = obj.at( "uri" ).get<std::string>().c_str();
+//    const char* uri = it->GetString();
 
     Util::DataURI dataURI;
-    if (ParseDataURI(uri, it->GetStringLength(), dataURI)) {
+    if ( ParseDataURI( uri, obj.at( "uri" ).get<std::string>().size(), dataURI ) ) {
+    //if ( ParseDataURI( uri, it->GetStringLength(), dataURI ) ) {
         if (dataURI.base64) {
             uint8_t* data = 0;
             this->byteLength = Util::DecodeBase64(dataURI.data, dataURI.dataLength, data);
@@ -467,7 +489,7 @@ inline void Buffer::Grow(size_t amount)
 // struct BufferView
 //
 
-inline void BufferView::Read(Value& obj, Asset& r)
+inline void BufferView::Read(json& obj, Asset& r)
 {
     const char* bufferId = MemberOrDefault<const char*>(obj, "buffer", 0);
     if (bufferId) {
@@ -482,7 +504,7 @@ inline void BufferView::Read(Value& obj, Asset& r)
 // struct Accessor
 //
 
-inline void Accessor::Read(Value& obj, Asset& r)
+inline void Accessor::Read( json& obj, Asset& r)
 {
     const char* bufferViewId = MemberOrDefault<const char*>(obj, "bufferView", 0);
     if (bufferViewId) {
@@ -631,12 +653,12 @@ inline Image::Image()
 
 }
 
-inline void Image::Read(Value& obj, Asset& r)
+inline void Image::Read( json& obj, Asset& r)
 {
     // Check for extensions first (to detect binary embedded data)
-    if (Value* extensions = FindObject(obj, "extensions")) {
+    if ( json* extensions = FindObject(obj, "extensions")) {
         if (r.extensionsUsed.KHR_binary_glTF) {
-            if (Value* ext = FindObject(*extensions, "KHR_binary_glTF")) {
+            if ( json* ext = FindObject(*extensions, "KHR_binary_glTF")) {
 
                 width  = MemberOrDefault(*ext, "width", 0);
                 height = MemberOrDefault(*ext, "height", 0);
@@ -657,11 +679,11 @@ inline void Image::Read(Value& obj, Asset& r)
     }
 
     if (!mDataLength) {
-        if (Value* uri = FindString(obj, "uri")) {
-            const char* uristr = uri->GetString();
+        if ( json* uri = FindString(obj, "uri")) {
+            const char* uristr = uri->get<std::string>().c_str();
 
             Util::DataURI dataURI;
-            if (ParseDataURI(uristr, uri->GetStringLength(), dataURI)) {
+            if (ParseDataURI(uristr, uri->get<std::string>().size(), dataURI)) {
                 mimeType = dataURI.mediaType;
                 if (dataURI.base64) {
                     mDataLength = Util::DecodeBase64(dataURI.data, dataURI.dataLength, mData);
@@ -699,7 +721,7 @@ inline void Image::SetData(uint8_t* data, size_t length, Asset& r)
     }
 }
 
-inline void Sampler::Read(Value& obj, Asset& r)
+inline void Sampler::Read(json& obj, Asset& r)
 {
     SetDefaults();
 
@@ -717,7 +739,7 @@ inline void Sampler::SetDefaults()
     wrapT = SamplerWrap_Repeat;
 }
 
-inline void Texture::Read(Value& obj, Asset& r)
+inline void Texture::Read( json& obj, Asset& r)
 {
     const char* sourcestr;
     if (ReadMember(obj, "source", sourcestr)) {
@@ -731,11 +753,11 @@ inline void Texture::Read(Value& obj, Asset& r)
 }
 
 namespace {
-    inline void ReadMaterialProperty(Asset& r, Value& vals, const char* propName, TexProperty& out)
+    inline void ReadMaterialProperty(Asset& r, json& vals, const char* propName, TexProperty& out)
     {
-        if (Value* prop = FindMember(vals, propName)) {
-            if (prop->IsString()) {
-                out.texture = r.textures.Get(prop->GetString());
+        if ( json* prop = FindMember(vals, propName)) {
+            if (prop->is_string()) {
+                out.texture = r.textures.Get(prop->get<std::string>().c_str());
             }
             else {
                 ReadValue(*prop, out.color);
@@ -744,11 +766,11 @@ namespace {
     }
 }
 
-inline void Material::Read(Value& material, Asset& r)
+inline void Material::Read( json& material, Asset& r)
 {
     SetDefaults();
 
-    if (Value* values = FindObject(material, "values")) {
+    if ( json* values = FindObject(material, "values")) {
         ReadMaterialProperty(r, *values, "ambient", this->ambient);
         ReadMaterialProperty(r, *values, "diffuse", this->diffuse);
         ReadMaterialProperty(r, *values, "specular", this->specular);
@@ -757,10 +779,10 @@ inline void Material::Read(Value& material, Asset& r)
         ReadMember(*values, "shininess", shininess);
     }
 
-    if (Value* extensions = FindObject(material, "extensions")) {
+    if ( json* extensions = FindObject(material, "extensions")) {
         if (r.extensionsUsed.KHR_materials_common) {
-            if (Value* ext = FindObject(*extensions, "KHR_materials_common")) {
-                if (Value* tnq = FindString(*ext, "technique")) {
+            if ( json* ext = FindObject(*extensions, "KHR_materials_common")) {
+                if ( json* tnq = FindString(*ext, "technique")) {
                     const char* t = tnq->GetString();
                     if      (strcmp(t, "BLINN") == 0)    technique = Technique_BLINN;
                     else if (strcmp(t, "PHONG") == 0)    technique = Technique_PHONG;
@@ -768,7 +790,7 @@ inline void Material::Read(Value& material, Asset& r)
                     else if (strcmp(t, "CONSTANT") == 0) technique = Technique_CONSTANT;
                 }
 
-                if (Value* values = FindObject(*ext, "values")) {
+                if ( json* values = FindObject(*ext, "values")) {
                     ReadMaterialProperty(r, *values, "ambient", this->ambient);
                     ReadMaterialProperty(r, *values, "diffuse", this->diffuse);
                     ReadMaterialProperty(r, *values, "specular", this->specular);
@@ -784,8 +806,9 @@ inline void Material::Read(Value& material, Asset& r)
 }
 
 namespace {
-    void SetVector(vec4& v, float x, float y, float z, float w)
-        { v[0] = x; v[1] = y; v[2] = z; v[3] = w; }
+    void SetVector(vec4& v, float x, float y, float z, float w) {
+        v[0] = x; v[1] = y; v[2] = z; v[3] = w; 
+    }
 }
 
 inline void Material::SetDefaults()
