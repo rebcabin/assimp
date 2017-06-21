@@ -865,16 +865,18 @@ inline void Mesh::Read( json& pJSON_Object, Asset& pAsset_Root)
 {
 	/****************** Mesh primitives ******************/
 	if ( json* primitives = FindArray(pJSON_Object, "primitives")) {
-        this->primitives.resize(primitives->Size());
-        for (unsigned int i = 0; i < primitives->Size(); ++i) {
+        this->primitives.resize(primitives->size() );
+        for (unsigned int i = 0; i < primitives->size(); ++i) {
             json& primitive = (*primitives)[i];
 
             Primitive& prim = this->primitives[i];
             prim.mode = MemberOrDefault(primitive, "mode", PrimitiveMode_TRIANGLES);
 
-            if (Value* attrs = FindObject(primitive, "attributes")) {
-                for (Value::MemberIterator it = attrs->MemberBegin(); it != attrs->MemberEnd(); ++it) {
-                    if (!it->value.IsString()) continue;
+            if ( json* attrs = FindObject(primitive, "attributes")) {
+                for ( json::iterator it = attrs->begin(); it != attrs->end(); ++it) {
+                    if ( !it->value.is_string() ) {
+                        continue;
+                    }
                     const char* attr = it->name.GetString();
                     // Valid attribute semantics include POSITION, NORMAL, TEXCOORD, COLOR, JOINT, JOINTMATRIX,
                     // and WEIGHT.Attribute semantics can be of the form[semantic]_[set_index], e.g., TEXCOORD_0, TEXCOORD_1, etc.
