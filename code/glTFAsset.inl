@@ -861,9 +861,9 @@ namespace {
     }
 }
 
-inline void Mesh::Read( json& pJSON_Object, Asset& pAsset_Root)
-{
-	/****************** Mesh primitives ******************/
+inline 
+void Mesh::Read( json& pJSON_Object, Asset& pAsset_Root) {
+	//****************** Mesh primitives ******************
 	if ( json* primitives = FindArray(pJSON_Object, "primitives")) {
         this->primitives.resize(primitives->size() );
         for (unsigned int i = 0; i < primitives->size(); ++i) {
@@ -874,10 +874,10 @@ inline void Mesh::Read( json& pJSON_Object, Asset& pAsset_Root)
 
             if ( json* attrs = FindObject(primitive, "attributes")) {
                 for ( json::iterator it = attrs->begin(); it != attrs->end(); ++it) {
-                    if ( !it->value.is_string() ) {
+                    if ( !it->is_string() ) {
                         continue;
                     }
-                    const char* attr = it->name.GetString();
+                    const char* attr = it.key().c_str();
                     // Valid attribute semantics include POSITION, NORMAL, TEXCOORD, COLOR, JOINT, JOINTMATRIX,
                     // and WEIGHT.Attribute semantics can be of the form[semantic]_[set_index], e.g., TEXCOORD_0, TEXCOORD_1, etc.
 
@@ -886,17 +886,23 @@ inline void Mesh::Read( json& pJSON_Object, Asset& pAsset_Root)
                     if (GetAttribVector(prim, attr, vec, undPos)) {
                         size_t idx = (attr[undPos] == '_') ? atoi(attr + undPos + 1) : 0;
                         if ((*vec).size() <= idx) (*vec).resize(idx + 1);
-						(*vec)[idx] = pAsset_Root.accessors.Get(it->value.GetString());
+                        const std::string val = it.value().get<std::string>();
+                        ( *vec )[ idx ] = pAsset_Root.accessors.Get( val );
+                        //( *vec )[ idx ] = pAsset_Root.accessors.Get( it->value.GetString() );
                     }
                 }
             }
 
             if ( json* indices = FindString(primitive, "indices")) {
-				prim.indices = pAsset_Root.accessors.Get(indices->GetString());
+                
+				prim.indices = pAsset_Root.accessors.Get( indices->get<std::string>() );
+//                prim.indices = pAsset_Root.accessors.Get( indices->GetString() );
             }
 
             if ( json* material = FindString(primitive, "material")) {
-				prim.material = pAsset_Root.materials.Get(material->GetString());
+                
+				prim.material = pAsset_Root.materials.Get( material->get<std::string>() );
+//                prim.material = pAsset_Root.materials.Get( material->GetString() );
             }
         }
     }
@@ -906,8 +912,7 @@ inline void Mesh::Read( json& pJSON_Object, Asset& pAsset_Root)
 
 	if(json_extensions == nullptr) goto mr_skip_extensions;
 
-	for(Value::MemberIterator it_memb = json_extensions->MemberBegin(); it_memb != json_extensions->MemberEnd(); it_memb++)
-	{
+    for ( json::iterator it_memb = json_extensions->begin(); it_memb != json_extensions->end(); it_memb++ ) {
 #ifdef ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC
         if(it_memb->name.GetString() == std::string("Open3DGC-compression"))
 		{
