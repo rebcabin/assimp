@@ -43,16 +43,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace glTF {
 
-    using rapidjson::StringBuffer;
+/*    using rapidjson::StringBuffer;
     using rapidjson::PrettyWriter;
     using rapidjson::Writer;
     using rapidjson::StringRef;
-    using rapidjson::StringRef;
+    using rapidjson::StringRef;*/
 
     namespace {
 
         template<size_t N>
-        inline Value& MakeValue(Value& val, float(&r)[N], MemoryPoolAllocator<>& al) {
+        inline json& MakeValue( json& val, float(&r)[N]/*, MemoryPoolAllocator<>& al*/) {
             val.SetArray();
             val.Reserve(N, al);
             for (decltype(N) i = 0; i < N; ++i) {
@@ -61,17 +61,19 @@ namespace glTF {
             return val;
         }
 
-        inline Value& MakeValue(Value& val, const std::vector<float> & r, MemoryPoolAllocator<>& al) {
-            val.SetArray();
-            val.Reserve(static_cast<rapidjson::SizeType>(r.size()), al);
+        inline json& MakeValue( json& val, const std::vector<float> & r/**, MemoryPoolAllocator<>& al*/) {
+            val = json::array();
+            //val.SetArray();
+            
+            //val.Reserve(static_cast<rapidjson::SizeType>(r.size()), al);
             for (unsigned int i = 0; i < r.size(); ++i) {
-                val.PushBack(r[i], al);
+                val.push_back(r[i]/*, al*/);
             }
             return val;
         }
 
         template<class T>
-        inline void AddRefsVector(Value& obj, const char* fieldId, std::vector< Ref<T> >& v, MemoryPoolAllocator<>& al) {
+        inline void AddRefsVector( json& obj, const char* fieldId, std::vector< Ref<T> >& v/*, MemoryPoolAllocator<>& al*/) {
             if (v.empty()) return;
             Value lst;
             lst.SetArray();
@@ -85,9 +87,21 @@ namespace glTF {
 
     }
 
-    inline void Write(Value& obj, Accessor& a, AssetWriter& w)
+    inline void Write( json& obj, Accessor& a, AssetWriter& w)
     {
-        obj.AddMember("bufferView", Value(a.bufferView->id, w.mAl).Move(), w.mAl);
+        //{ \"happy\": true, \"pi\": 3.141 }"_json;
+        json obj1 = {
+                { "bufferView",  a.bufferView->id },
+                { "byteOffset", a.byteOffset },
+                { "byteStride", a.byteStride },
+                { "componentType", int( a.componentType )},
+                { "count", a.count },
+                { "type", StringRef( AttribType::ToString( a.type ) ) },
+                { "max", a.max },
+                { "min", a.min },
+            };
+        obj = obj1;
+        /*obj.AddMember("bufferView", Value(a.bufferView->id, w.mAl).Move(), w.mAl);
         obj.AddMember("byteOffset", a.byteOffset, w.mAl);
         obj.AddMember("byteStride", a.byteStride, w.mAl);
         obj.AddMember("componentType", int(a.componentType), w.mAl);
@@ -96,13 +110,13 @@ namespace glTF {
 
         Value vTmpMax, vTmpMin;
         obj.AddMember("max", MakeValue(vTmpMax, a.max, w.mAl), w.mAl);
-        obj.AddMember("min", MakeValue(vTmpMin, a.min, w.mAl), w.mAl);
+        obj.AddMember("min", MakeValue(vTmpMin, a.min, w.mAl), w.mAl);*/
     }
 
-    inline void Write(Value& obj, Animation& a, AssetWriter& w)
+    inline void Write( json& obj, Animation& a, AssetWriter& w)
     {
         /****************** Channels *******************/
-        Value channels;
+        json channels;
         channels.SetArray();
         channels.Reserve(unsigned(a.Channels.size()), w.mAl);
 

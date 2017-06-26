@@ -118,7 +118,7 @@ void MMDImporter::InternReadFile(const std::string &file, aiScene *pScene,
 
   // Get the file-size and validate it, throwing an exception when fails
   fileStream.seekg(0, fileStream.end);
-  size_t fileSize = fileStream.tellg();
+  std::streampos fileSize = fileStream.tellg();
   fileStream.seekg(0, fileStream.beg);
 
   if (fileSize < sizeof(pmx::PmxModel)) {
@@ -272,13 +272,13 @@ aiMesh *MMDImporter::CreateMesh(const pmx::PmxModel *pModel,
     switch (v->skinning_type) {
     case pmx::PmxVertexSkinningType::BDEF1:
       bone_vertex_map[vsBDEF1_ptr->bone_index].push_back(
-          aiVertexWeight(index, 1.0));
+          aiVertexWeight(index, 1.0f));
       break;
     case pmx::PmxVertexSkinningType::BDEF2:
       bone_vertex_map[vsBDEF2_ptr->bone_index1].push_back(
           aiVertexWeight(index, vsBDEF2_ptr->bone_weight));
       bone_vertex_map[vsBDEF2_ptr->bone_index2].push_back(
-          aiVertexWeight(index, 1.0 - vsBDEF2_ptr->bone_weight));
+          aiVertexWeight(index, 1.0f - vsBDEF2_ptr->bone_weight));
       break;
     case pmx::PmxVertexSkinningType::BDEF4:
       bone_vertex_map[vsBDEF4_ptr->bone_index1].push_back(
@@ -295,7 +295,7 @@ aiMesh *MMDImporter::CreateMesh(const pmx::PmxModel *pModel,
       bone_vertex_map[vsSDEF_ptr->bone_index1].push_back(
           aiVertexWeight(index, vsSDEF_ptr->bone_weight));
       bone_vertex_map[vsSDEF_ptr->bone_index2].push_back(
-          aiVertexWeight(index, 1.0 - vsSDEF_ptr->bone_weight));
+          aiVertexWeight(index, 1.0f - vsSDEF_ptr->bone_weight));
       break;
     case pmx::PmxVertexSkinningType::QDEF:
       const auto vsQDEF_ptr =

@@ -53,36 +53,32 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "glTFAsset.h"
 
-namespace glTF
-{
+namespace glTF {
+    using json = nlohmann::json;
 
-using rapidjson::MemoryPoolAllocator;
 
-class AssetWriter
-{
-    template<class T>
-    friend void WriteLazyDict(LazyDict<T>& d, AssetWriter& w);
+//using rapidjson::MemoryPoolAllocator;
+
+class AssetWriter {
+public:
+    json mDoc;
+    Asset& mAsset;
+
+    //    MemoryPoolAllocator<>& mAl;
+
+    AssetWriter( Asset& asset );
+    void WriteFile( const char* path );
+    void WriteGLBFile( const char* path );
 
 private:
-
+    template<class T>
+    friend void WriteLazyDict( LazyDict<T>& d, AssetWriter& w );
     void WriteBinaryData(IOStream* outfile, size_t sceneLength);
-
     void WriteMetadata();
     void WriteExtensionsUsed();
-
     template<class T>
     void WriteObjects(LazyDict<T>& d);
 
-public:
-    Document mDoc;
-    Asset& mAsset;
-
-    MemoryPoolAllocator<>& mAl;
-
-    AssetWriter(Asset& asset);
-
-    void WriteFile(const char* path);
-    void WriteGLBFile(const char* path);
 };
 
 }
