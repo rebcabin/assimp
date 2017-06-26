@@ -53,7 +53,8 @@ namespace glTF {
 
         template<size_t N>
         inline json& MakeValue( json& val, float(&r)[N]/*, MemoryPoolAllocator<>& al*/) {
-            val.SetArray();
+            val = json::array();
+            //val.SetArray();
             val.Reserve(N, al);
             for (decltype(N) i = 0; i < N; ++i) {
                 val.PushBack(r[i], al);

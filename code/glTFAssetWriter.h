@@ -54,8 +54,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "glTFAsset.h"
 
 namespace glTF {
-    using json = nlohmann::json;
 
+using json = nlohmann::json;
 
 //using rapidjson::MemoryPoolAllocator;
 
