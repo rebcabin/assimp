@@ -517,6 +517,7 @@ void Converter::ConvertNodes( uint64_t id, aiNode& parent, const aiMatrix4x4& pa
             }
 
             const Object* const object = con->SourceObject();
+            const Object* const for_debugger = object;
             if ( !object ) {
                 FBXImporter::LogWarn( "failed to convert source object for Model link" );
                 continue;
@@ -1559,6 +1560,7 @@ void Converter::ConvertWeights( aiMesh* out, const Model& model, const MeshGeome
             for( WeightIndexArray::value_type index : indices ) {
 
                 unsigned int count = 0;
+                unsigned int for_debugger = 0;
                 const unsigned int* const out_idx = geo.ToOutputVertexIndex( index, count );
                 // ToOutputVertexIndex only returns NULL if index is out of bounds
                 // which should never happen
@@ -1915,13 +1917,13 @@ void Converter::TrySetTextureProperties( aiMaterial* out_mat, const LayeredTextu
     }
 
     int texCount = (*it).second->textureCount();
-    
+
     // Set the blend mode for layered textures
 	int blendmode= (*it).second->GetBlendMode();
 	out_mat->AddProperty(&blendmode,1,_AI_MATKEY_TEXOP_BASE,target,0);
 
 	for(int texIndex = 0; texIndex < texCount; texIndex++){
-    
+
         const Texture* const tex = ( *it ).second->getTexture(texIndex);
 
         aiString path;

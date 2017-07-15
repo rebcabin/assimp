@@ -82,7 +82,7 @@ enum Flag
    e_unknown_21 = 1 << 21,
    e_unknown_22 = 1 << 22,
    e_unknown_23 = 1 << 23,
-   e_flag_field_size_64_bit = 1 << 24, // Not sure what is 
+   e_flag_field_size_64_bit = 1 << 24, // Not sure what is
    e_unknown_25 = 1 << 25,
    e_unknown_26 = 1 << 26,
    e_unknown_27 = 1 << 27,
@@ -372,6 +372,12 @@ bool ReadScope(TokenList& output_tokens, const char* input, const char*& cursor,
     // now comes the name of the scope/key
     const char* sbeg, *send;
     ReadString(sbeg, send, input, cursor, end);
+
+    bool stop_debugger_here = false;
+    if ((sbeg[0] == 'V') && (sbeg[1] == 'e') && (sbeg[2] == 'r') && (sbeg[3] == 't') &&
+        (sbeg[4] == 'i') && (sbeg[5] == 'c') && (sbeg[6] == 'e') && (sbeg[7] == 's')) {
+        stop_debugger_here = true;
+    }
 
     output_tokens.push_back(new_Token(sbeg, send, TokenType_KEY, Offset(input, cursor) ));
 

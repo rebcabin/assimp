@@ -1,0 +1,693 @@
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/3D/box_a.3d
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Unreal Mesh Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/3D/'
+Debug, T0: UNREAL: data file is /Users/bbeckman/Documents/assimp/test/models/3D/box_d.3d
+Debug, T0: UNREAL: aniv file is /Users/bbeckman/Documents/assimp/test/models/3D/box_a.3d
+Debug, T0: UNREAL: uc file is /Users/bbeckman/Documents/assimp/test/models/3D/box.uc
+Debug, T0: MakeLeftHandedProcess begin
+Debug, T0: MakeLeftHandedProcess finished
+Debug, T0: FlipWindingOrderProcess begin
+Debug, T0: FlipWindingOrderProcess finished
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/3DS/fels.3ds
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Discreet 3DS Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/3DS/'
+Info,  T0: 3DS file format version: 3
+Warn,  T0: No hierarchy information has been found in the file. 
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/AC/Wuson.ac
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: AC3D Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/AC/'
+Info,  T0: AC3D file format version: 11
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/AMF/test1.amf
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Additive manufacturing file format(AMF) Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/AMF/'
+Debug, T0: ScenePreprocessor: Adding default material 'DefaultMaterial'
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/ASE/ThreeCubesGreen.ASE
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: ASE Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/ASE/'
+Info,  T0: Line 1: Comment: AsciiExport-Version  2,00 - Tue May 06 17:21:38 2008
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/B3D/WusonBlitz.b3d
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: BlitzBasic 3D Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/B3D/'
+Info,  T0: B3D file format version: 1
+Debug, T0: MakeLeftHandedProcess begin
+Debug, T0: MakeLeftHandedProcess finished
+Debug, T0: FlipWindingOrderProcess begin
+Debug, T0: FlipWindingOrderProcess finished
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/BLEND/AreaLight_269.blend
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Blender 3D Importer 
+http://www.blender3d.org.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/BLEND/'
+Info,  T0: BLEND: Blender version is 2.69 (64bit: true, little endian: true)
+Debug, T0: REND
+Debug, T0: TEST
+Debug, T0: GLOB
+Debug, T0: WM
+Debug, T0: DATA
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SC
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: CA
+Debug, T0: LA
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: LA
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: LA
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: WO
+Debug, T0: DATA
+Debug, T0: OB
+Skipping one or more lines with the same contents
+Debug, T0: DATA
+Debug, T0: OB
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: OB
+Debug, T0: MA
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: TE
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: ME
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: LS
+Debug, T0: DATA
+Debug, T0: DNA1
+Debug, T0: BlenderDNA: Got 551 structures with totally 6353 fields
+Info,  T0: BlenderDNA: Dumped dna to dna.txt
+Debug, T0: ENDB
+Warn,  T0: <add reason>
+Skipping one or more lines with the same contents
+Warn,  T0: BlendDNA: Did not find a field named `flags` in structure `Lamp`
+Warn,  T0: <add reason>
+Skipping one or more lines with the same contents
+Warn,  T0: BlendDNA: Did not find a field named `flags` in structure `Lamp`
+Warn,  T0: <add reason>
+Skipping one or more lines with the same contents
+Warn,  T0: BlendDNA: Did not find a field named `flags` in structure `Lamp`
+Info,  T0: (Stats) Fields read: 515, pointers resolved: 23, cache hits: 3, cached objects: 19
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/BLEND/box.blend
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Blender 3D Importer 
+http://www.blender3d.org.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/BLEND/'
+Info,  T0: BLEND: Blender version is 2.76 (64bit: true, little endian: true)
+Debug, T0: REND
+Debug, T0: TEST
+Debug, T0: GLOB
+Debug, T0: WM
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SC
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: CA
+Debug, T0: LA
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: WO
+Debug, T0: DATA
+Debug, T0: OB
+Debug, T0: DATA
+Debug, T0: OB
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: OB
+Debug, T0: DATA
+Debug, T0: MA
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: TE
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: ME
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: LS
+Debug, T0: DATA
+Debug, T0: DNA1
+Debug, T0: BlenderDNA: Got 604 structures with totally 6955 fields
+Info,  T0: BlenderDNA: Dumped dna to dna.txt
+Debug, T0: ENDB
+Warn,  T0: <add reason>
+Skipping one or more lines with the same contents
+Warn,  T0: BlendDNA: Did not find a field named `flags` in structure `Lamp`
+Info,  T0: (Stats) Fields read: 431, pointers resolved: 17, cache hits: 3, cached objects: 13
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/BLEND/BlenderMaterial_269.blend
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Blender 3D Importer 
+http://www.blender3d.org.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/BLEND/'
+Info,  T0: BLEND: Blender version is 2.69 (64bit: true, little endian: true)
+Debug, T0: REND
+Debug, T0: TEST
+Debug, T0: GLOB
+Debug, T0: WM
+Debug, T0: DATA
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SN
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: SC
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: CA
+Debug, T0: LA
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: WO
+Debug, T0: DATA
+Debug, T0: AC
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: OB
+Debug, T0: DATA
+Debug, T0: OB
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: OB
+Debug, T0: DATA
+Debug, T0: MA
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: TE
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: ME
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: BR
+Debug, T0: DATA
+Skipping one or more lines with the same contents
+Debug, T0: LS
+Debug, T0: DATA
+Debug, T0: DNA1
+Debug, T0: BlenderDNA: Got 551 structures with totally 6353 fields
+Info,  T0: BlenderDNA: Dumped dna to dna.txt
+Debug, T0: ENDB
+Warn,  T0: <add reason>
+Skipping one or more lines with the same contents
+Warn,  T0: BlendDNA: Did not find a field named `flags` in structure `Lamp`
+Info,  T0: (Stats) Fields read: 431, pointers resolved: 17, cache hits: 3, cached objects: 13
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/BVH/01_01.bvh
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: BVH Importer (MoCap).
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/BVH/'
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/Collada/cameras.dae
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Collada Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/Collada/'
+Debug, T0: Collada schema version is 1.4.n
+Warn,  T0: Collada: Orthographic cameras are not supported.
+Info,  T0: Load cameraExp.dae
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Debug, T0: (Deleting previous scene)
+Info,  T0: Found a matching importer for this file format: Collada Importer.
+Info,  T0: Import root directory is './'
+Debug, T0: Collada schema version is 1.4.n
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/Collada/lights.dae
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Collada Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/Collada/'
+Debug, T0: Collada schema version is 1.4.n
+Info,  T0: Load lightsExp.dae
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Debug, T0: (Deleting previous scene)
+Info,  T0: Found a matching importer for this file format: Collada Importer.
+Info,  T0: Import root directory is './'
+Debug, T0: Collada schema version is 1.4.n
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/Collada/duck.dae
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Collada Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/Collada/'
+Debug, T0: Collada schema version is 1.4.n
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/CSM/ThomasFechten.csm
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: CharacterStudio Motion Importer (MoCap).
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/CSM/'
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Debug, T0: ScenePreprocessor: Dummy rotation track has been generated
+Debug, T0: ScenePreprocessor: Dummy scaling track has been generated
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/DXF/PinkEggFromLW.dxf
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Drawing Interchange Format (DXF) Importer.
+Info,  T0: Import root directory is '/Users/bbeckman/Documents/assimp/test/models/DXF/'
+Debug, T0: DXF: got 0 entries in BLOCKS
+Debug, T0: DXF: got 288 polylines and 0 inserted blocks in ENTITIES
+Debug, T0: DXF: Unexpanded polycount is 288, vertex count is 1152
+Info,  T0: Load /Users/bbeckman/Documents/assimp/test/models/FBX/spider.fbx
+Debug, T0: Assimp 3.3.2684099223 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format: Autodesk FBX Importer.

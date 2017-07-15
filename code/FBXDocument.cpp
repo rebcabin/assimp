@@ -684,6 +684,8 @@ Connection::Connection(uint64_t insertionOrder,  uint64_t src, uint64_t dest, co
 , doc(doc)
 {
     ai_assert(doc.Objects().find(src) != doc.Objects().end());
+    auto for_debugger_1 = doc.Objects().find(src);
+    auto for_debugger_2 = doc.Objects().find(dest);
     // dest may be 0 (root node)
     ai_assert(!dest || doc.Objects().find(dest) != doc.Objects().end());
 }
@@ -735,4 +737,3 @@ const Object* Connection::DestinationObject() const
 } // !Assimp
 
 #endif
-

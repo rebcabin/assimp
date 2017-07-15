@@ -117,6 +117,11 @@ namespace FBX {
 Element::Element(const Token& key_token, Parser& parser)
 : key_token(key_token)
 {
+    bool stop_debugger_here = (42 == (6 * 7));
+    if (stop_debugger_here) {
+        stop_debugger_here = false;
+    }
+    
     TokenPtr n = NULL;
     do {
         n = parser.AdvanceToNextToken();
@@ -172,6 +177,11 @@ Element::~Element()
 // ------------------------------------------------------------------------------------------------
 Scope::Scope(Parser& parser,bool topLevel)
 {
+    bool stop_debugger_here = (42 == (6 * 7));
+    if (stop_debugger_here) {
+        stop_debugger_here = false;
+    }
+
     if(!topLevel) {
         TokenPtr t = parser.CurrentToken();
         if (t->Type() != TokenType_OPEN_BRACKET) {
@@ -191,6 +201,10 @@ Scope::Scope(Parser& parser,bool topLevel)
         }
 
         const std::string& str = n->StringContents();
+        if (str[0] == 'V' && str[1] == 'e' && str[2] == 'r' && str[3] == 't' &&
+            str[4] == 'i' && str[5] == 'c' && str[6] == 'e' && str[7] == 's')
+        {   stop_debugger_here = true;   }
+
         elements.insert(ElementMap::value_type(str,new_Element(*n,parser)));
 
         // Element() should stop at the next Key token (or right after a Close token)
